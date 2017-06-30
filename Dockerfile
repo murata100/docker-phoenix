@@ -1,5 +1,5 @@
 FROM sequenceiq/hadoop-docker:2.7.0
-MAINTAINER SequenceIQ
+MAINTAINER David Steinberg david@resium.com
 
 # zookeeper
 ENV ZOOKEEPER_VERSION 3.4.6
@@ -36,6 +36,6 @@ ADD bootstrap-phoenix.sh /etc/bootstrap-phoenix.sh
 RUN chown root:root /etc/bootstrap-phoenix.sh
 RUN chmod 700 /etc/bootstrap-phoenix.sh
 
-CMD ["/etc/bootstrap-phoenix.sh", "-bash"]
+CMD ["/etc/bootstrap-phoenix.sh"]
 
 EXPOSE 8765
