@@ -15,7 +15,6 @@ $HADOOP_PREFIX/sbin/start-yarn.sh
 $ZOO_HOME/bin/zkServer.sh start
 $HBASE_HOME/bin/start-hbase.sh
 
-python /usr/local/phoenix/bin/queryserver.py
 
 if [[ $1 == "-bash" ]]; then
   python /usr/local/phoenix/bin/queryserver.py &

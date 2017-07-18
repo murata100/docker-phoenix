@@ -22,7 +22,7 @@ RUN rm $HBASE_HOME/conf/hbase-site.xml
 ADD hbase-site.xml $HBASE_HOME/conf/hbase-site.xml
 
 # phoenix
-ENV PHOENIX_VERSION 4.10.0
+ENV PHOENIX_VERSION 4.11.0
 RUN curl -s http://www-eu.apache.org/dist/phoenix/apache-phoenix-$PHOENIX_VERSION-HBase-$HBASE_MAJOR/bin/apache-phoenix-$PHOENIX_VERSION-HBase-$HBASE_MAJOR-bin.tar.gz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s ./apache-phoenix-$PHOENIX_VERSION-HBase-$HBASE_MAJOR-bin phoenix
 ENV PHOENIX_HOME /usr/local/phoenix
@@ -39,3 +39,4 @@ RUN chmod 700 /etc/bootstrap-phoenix.sh
 CMD ["/etc/bootstrap-phoenix.sh"]
 
 EXPOSE 8765
+EXPOSE 8088
