@@ -2,7 +2,7 @@ FROM sequenceiq/hadoop-docker:2.7.0
 MAINTAINER David Steinberg david@resium.com
 
 # zookeeper
-ENV ZOOKEEPER_VERSION 3.4.6
+ENV ZOOKEEPER_VERSION 3.4.13
 RUN curl -s http://mirror.csclub.uwaterloo.ca/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s ./zookeeper-$ZOOKEEPER_VERSION zookeeper
 ENV ZOO_HOME /usr/local/zookeeper
@@ -12,7 +12,7 @@ RUN mkdir /tmp/zookeeper
 
 # hbase
 ENV HBASE_MAJOR 1.2
-ENV HBASE_MINOR 6
+ENV HBASE_MINOR 6.1
 ENV HBASE_VERSION "${HBASE_MAJOR}.${HBASE_MINOR}"
 RUN curl -s http://www-eu.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s ./hbase-$HBASE_VERSION hbase
@@ -22,7 +22,7 @@ RUN rm $HBASE_HOME/conf/hbase-site.xml
 ADD hbase-site.xml $HBASE_HOME/conf/hbase-site.xml
 
 # phoenix
-ENV PHOENIX_VERSION 4.11.0
+ENV PHOENIX_VERSION 4.14.0
 RUN curl -s http://www-eu.apache.org/dist/phoenix/apache-phoenix-$PHOENIX_VERSION-HBase-$HBASE_MAJOR/bin/apache-phoenix-$PHOENIX_VERSION-HBase-$HBASE_MAJOR-bin.tar.gz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s ./apache-phoenix-$PHOENIX_VERSION-HBase-$HBASE_MAJOR-bin phoenix
 ENV PHOENIX_HOME /usr/local/phoenix
@@ -40,3 +40,4 @@ CMD ["/etc/bootstrap-phoenix.sh"]
 
 EXPOSE 8765
 EXPOSE 8088
+EXPOSE 8080
